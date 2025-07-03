@@ -1,0 +1,18 @@
+services:
+  # Serviço da sua aplicação (API)
+  app:
+    # Constrói a imagem a partir do Dockerfile no diretório atual (.)
+    build: .
+    # Nome do container para facilitar a referência
+    container_name: gestao-escolar-api
+    # Mapeia a porta 8000 do seu computador para a porta 8000 do container,
+    # conforme exposto no seu Dockerfile.
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual dentro do container no diretório /app.
+    # Isso permite que as alterações no seu código sejam refletidas instantaneamente
+    # graças à flag --reload do uvicorn, ideal para desenvolvimento.
+    volumes:
+      - .:/app
+    # Reinicia o container automaticamente em caso de falha.
+    restart: unless-stopped
